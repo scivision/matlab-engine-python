@@ -2,16 +2,21 @@
 """
 setup Matlab Engine in Python
 
-Assumes your Python version is compatible with Matlab version.
+Assumes the Python version is compatible with the Matlab version.
 """
 
+import argparse
 from pathlib import Path
 import tempfile
 import sys
 import subprocess
 import shutil
 
-matlab = shutil.which("matlab")
+p = argparse.ArgumentParser(description="setup Matlab Engine in Python")
+p.add_argument("matlab_exe", help="path to Matlab executable", nargs="?", default="matlab")
+a = p.parse_args()
+
+matlab = shutil.which(a.matlab_exe)
 if not matlab:
     raise FileNotFoundError("Matlab not found")
 
