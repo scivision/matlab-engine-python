@@ -4,7 +4,7 @@
 Matlab Engine for Python:
 
 ```sh
-python setup_matlab_engine.py
+python -m pip install matlabengine
 ```
 
 Matlab can use Python via
