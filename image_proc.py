@@ -13,9 +13,12 @@ matlab_version = eng.version()
 print(f"Matlab {matlab_version}")
 
 # %% get test data from Matlab to Python efficiently
-dat = eng.load("clown")
+# Matlab factory test data:
+# https://www.mathworks.com/help/matlab/import_export/matlab-example-data-sets.html#mw_d7b7b839-5281-47b0-a838-6c6fe5ec32c2
 
-# Matlab array => Numpy array
+dat = eng.imread("peppers.png")
+
+# %% Matlab array => Numpy array
 img = np.array(dat["X"].tomemoryview()).reshape(dat["X"].size, order="F")
 
 # %% Apply Gaussian filter to image using Gaussian kernel from Python
