@@ -1,34 +1,39 @@
 %% example of doing image processing in Python with image from Matlab
 % assumes that you have previously installed scipy in Python.
-assert(~verLessThan('matlab', '9.5'), 'Matlab >= R2018b required')
-addons = matlab.addons.installedAddons();
-has_img = any(contains(addons.Name, 'Image Processing Toolbox'));
 
 check_numpy()
-%% 200x320 image
-dat = load('clown');
-img = dat.X;
+%% get test data from Matlab to Python efficiently
+% Matlab factory test data:
+% https://www.mathworks.com/help/matlab/import_export/matlab-example-data-sets.html#mw_d7b7b839-5281-47b0-a838-6c6fe5ec32c2
+
+dat = imread("corn.tif", 3);
 %% Apply Gaussian filter to image
-% Y = py.skimage.filters.gaussian(Xp, 3);  % segfaults R2018b with Python 3.6
-Y = py.scipy.ndimage.gaussian_filter(img, 3);  % another way
+% Y = py.skimage.filters.gaussian(dat, 3);  % Scikit-image
+Y = py.scipy.ndimage.gaussian_filter(dat, 3);  % Scipy
 %% convert from Numpy array to Matlab array
-Y = double(Y);
+Y = uint8(Y);
 %% plot
 figure(1), clf(1)
 t = tiledlayout(1,3);
 
 nexttile(t)
-imshow(img, dat.map)
+imshow(dat)
 title('original')
 
 nexttile(t)
-imshow(Y, dat.map)
+imshow(Y)
 title('filtered in Python')
 %% Matlab image processing toolbox, if available
 % the filter truncation radius isn't the same, so the numerical results differ.
-if has_img
+try
   F = fspecial('gaussian', [15,15], 3);
-  M = imfilter(img, F);
+  M = imfilter(dat, F);
   nexttile(t)
-  imshow(M, dat.map), title('Matlab filtered')
+  imshow(M), title('Matlab filtered')
+catch e
+  if e.identifier == "MATLAB:UndefinedFunction"
+      disp("skipped Image Processing Toolbox example")
+  else
+      rethrow(e)
+  end
 end
