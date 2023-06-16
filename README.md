@@ -12,14 +12,17 @@ or
 python -m pip install -r requirements.txt
 ```
 
+## HDF5 data exchange
+
 To avoid using Matlab Engine, which requires compatible versions of Python and Matlab,
 one can interchange data using a file and calling the other language interpreter.
+
+Example: [image_hdf5.py](./image_hdf5.py) calls Matlab function [image_hdf5.m](./image_hdf5.m).
 
 ## Matlab Engine examples
 
 Python can directly exchange data with Matlab and call Matlab functions via
 [Matlab Engine for Python](https://www.mathworks.com/help/matlab/apiref/matlab.engine.matlabengine.html).
-.
 [Setup](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html)
 Matlab Engine for Python:
 
