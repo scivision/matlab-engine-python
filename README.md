@@ -7,15 +7,21 @@ Matlab Engine for Python:
 python -m pip install matlabengine
 ```
 
+## Matlab using Python
+
 Matlab can use Python via
 [pyenv](https://www.mathworks.com/help/matlab/ref/pyenv.html).
-See example in [image_proc.py](./image_proc.m).
+See example in [image_proc.m](./image_proc.m).
+
+## Python using Matlab Engine
 
 Separately, Python can use Matlab via
 [Matlab Engine for Python](https://www.mathworks.com/help/matlab/apiref/matlab.engine.matlabengine.html).
 See example in [image_proc.py](./image_proc.py).
 
-## Numpy import issues
+## Troubleshooting
+
+### Numpy import issues
 
 [check_numpy.m](./check_numpy.m)
 shows how to check issues with DLLs on Windows with Numpy and Matlab.
