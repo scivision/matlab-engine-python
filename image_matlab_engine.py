@@ -1,5 +1,5 @@
 """
-example: image processing in Matlab from Python
+example: image processing in Matlab from Python using Matlab Engine
 """
 
 from pathlib import Path

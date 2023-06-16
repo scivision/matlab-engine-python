@@ -1,5 +1,25 @@
 # Matlab Python interfacing
 
+Install necessary package by either:
+
+```sh
+conda install --file requirements.txt
+```
+
+or
+
+```sh
+python -m pip install -r requirements.txt
+```
+
+To avoid using Matlab Engine, which requires compatible versions of Python and Matlab,
+one can interchange data using a file and calling the other language interpreter.
+
+## Matlab Engine examples
+
+Python can directly exchange data with Matlab and call Matlab functions via
+[Matlab Engine for Python](https://www.mathworks.com/help/matlab/apiref/matlab.engine.matlabengine.html).
+.
 [Setup](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html)
 Matlab Engine for Python:
 
@@ -7,19 +27,14 @@ Matlab Engine for Python:
 python -m pip install matlabengine
 ```
 
+Example: [image_matlab_engine.py](./image_matlab_engine.py).
+
 ## Matlab using Python
 
 Matlab can use Python code via
 [pyenv](https://www.mathworks.com/help/matlab/ref/pyenv.html).
 
 Example: [image_proc.m](./image_proc.m).
-
-## Python using Matlab Engine
-
-Python can use Matlab code via
-[Matlab Engine for Python](https://www.mathworks.com/help/matlab/apiref/matlab.engine.matlabengine.html).
-
-Example: [image_proc.py](./image_proc.py).
 
 ## Troubleshooting
 
