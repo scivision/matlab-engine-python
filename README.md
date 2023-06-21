@@ -12,6 +12,12 @@ or
 python -m pip install -r requirements.txt
 ```
 
+Another way (particularly if using a brand new Matlab release) is to install directly from Matlab directory like:
+
+```sh
+python -m pip install /Applications/MATLAB_R2023b.app/extern/engines/python/
+```
+
 ## HDF5 data exchange
 
 To avoid using Matlab Engine, which requires compatible versions of Python and Matlab,
