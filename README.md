@@ -1,21 +1,68 @@
-# Matlab Python interfacing
+# Matlab Engine for Python
 
-Install necessary package by either:
+This repo gives examples of calling Matlab functions from Python using
+[Matlab Engine for Python](https://www.mathworks.com/help/matlab/apiref/matlab.engine.matlabengine.html).
+
+Install necessary packages for these examples:
 
 ```sh
 conda install --file requirements.txt
-```
 
-or
-
-```sh
+# OR
 python -m pip install -r requirements.txt
 ```
 
-Another way (particularly if using a brand new Matlab release) is to install directly from Matlab directory like:
+Python can directly exchange data with Matlab and call Matlab functions via Matlab Engine for Python.
+[Setup](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html)
+Matlab Engine for Python:
 
 ```sh
-python -m pip install /Applications/MATLAB_R2023b.app/extern/engines/python/
+python -m pip install matlabengine
+```
+
+Or install directly from Matlab directory like:
+
+```sh
+python -m pip install $(matlab -batch "disp(matlabroot)" | tail -n1)/extern/engines/python/
+```
+
+Linux and Windows can use regular Python from the Terminal with Matlab Engine.
+macOS cannot use Python Matlab Engine directly from Terminal.
+macOS with Matlab Engine requires
+[mwpython](https://www.mathworks.com/help/releases/R2023b/compiler_sdk/python/mwpython.html),
+which is part of the
+[Matlab Compiler SDK](https://www.mathworks.com/products/matlab-compiler-sdk.html).
+
+Our
+[article](https://www.scivision.dev/matlab-engine-python-install/)
+explains more details of Matlab Engine for Python.
+
+## Numpy.ndarray return from Matlab
+
+Matlab Engine accepts Numpy.ndarray into Matlab functions.
+Getting Numpy.ndarray from Matlab Engine returned arrays requires like:
+
+```python
+import numpy
+import matlab.engine
+eng = matlab.engine.start_matlab("-nojvm")
+
+x = numpy.random.random((3,2))
+
+y_m = eng.my_matlab_fun(x)
+
+y = numpy.array(y_m.tomemoryview()).reshape(y_m.size, order="F")
+```
+
+## Matlab functions with more than one output
+
+For Matlab functions that return more than one output, use "nargout=" like:
+
+```python
+import matlab.engine
+eng = matlab.engine.start_matlab("-nojvm")
+
+x, y = eng.myfun(x, nargout=2)
 ```
 
 ## HDF5 data exchange
@@ -25,18 +72,7 @@ one can interchange data using a file and calling the other language interpreter
 
 Example: [image_hdf5.py](./image_hdf5.py) calls Matlab function [image_hdf5.m](./image_hdf5.m).
 
-## Matlab Engine examples
-
-Python can directly exchange data with Matlab and call Matlab functions via
-[Matlab Engine for Python](https://www.mathworks.com/help/matlab/apiref/matlab.engine.matlabengine.html).
-[Setup](https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html)
-Matlab Engine for Python:
-
-```sh
-python -m pip install matlabengine
-```
-
-Example: [image_matlab_engine.py](./image_matlab_engine.py).
+Matlab Engine example: [image_matlab_engine.py](./image_matlab_engine.py).
 
 ## Matlab using Python
 
