@@ -26,15 +26,7 @@ Or install directly from Matlab directory like:
 python -m pip install $(matlab -batch "disp(matlabroot)" | tail -n1)/extern/engines/python/
 ```
 
-Linux and Windows can use regular Python from the Terminal with Matlab Engine.
-macOS cannot use Python Matlab Engine directly from Terminal.
-macOS with Matlab Engine requires
-[mwpython](https://www.mathworks.com/help/releases/R2023b/compiler_sdk/python/mwpython.html),
-which is part of the
-[Matlab Compiler SDK](https://www.mathworks.com/products/matlab-compiler-sdk.html).
-
-Our
-[article](https://www.scivision.dev/matlab-engine-python-install/)
+[Article](https://www.scivision.dev/matlab-engine-python-install/)
 explains more details of Matlab Engine for Python.
 
 ## Numpy.ndarray return from Matlab
