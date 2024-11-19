@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 example: image processing in Matlab from Python using HDF5 to exchange data
 This does not require Matlab Engine
@@ -18,8 +19,8 @@ if not matlab:
 
 img_name = 'corn.tif'
 
-img_file = subprocess.check_output([matlab, "-batch", f"disp(which('{img_name}'))"], text=True)
-img_file = Path(img_file.strip()).resolve(strict=True)
+img_f = subprocess.check_output([matlab, "-batch", f"disp(which('{img_name}'))"], text=True)
+img_file = Path(img_f.strip()).resolve(strict=True)
 # %% get test data from Matlab to Python efficiently
 # Matlab factory test data:
 # https://www.mathworks.com/help/matlab/import_export/matlab-example-data-sets.html#mw_d7b7b839-5281-47b0-a838-6c6fe5ec32c2

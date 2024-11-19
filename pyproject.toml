@@ -1,0 +1,4 @@
+[tool.mypy]
+files = ["."]
+
+ignore_missing_imports = true
