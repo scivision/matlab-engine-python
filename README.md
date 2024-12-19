@@ -1,7 +1,11 @@
 # Matlab Engine for Python
 
 This repo gives examples of calling Matlab functions from Python using
-[Matlab Engine for Python](https://www.mathworks.com/help/matlab/apiref/matlab.engine.matlabengine.html).
+[Matlab Engine for Python](https://www.mathworks.com/help/matlab/apiref/matlab.engine.matlabengine.html)
+and also examples of Matlab Interface to Python.
+Compatible
+[versions of Python and Matlab](https://www.mathworks.com/support/requirements/python-compatibility.html)
+are required for either interface.
 
 Install necessary packages for these examples:
 
@@ -57,7 +61,15 @@ eng = matlab.engine.start_matlab("-nojvm")
 x, y = eng.myfun(x, nargout=2)
 ```
 
-## HDF5 data exchange
+## Data file exchange
+
+The Python [pickle](https://docs.python.org/3/library/pickle.html) module can save and load data to/from files.
+While standard file formats such as HDF5 should be used instead of pickle, Matlab can read / write Pickle data using the Matlab Interface to Python.
+
+[Example of write / read Python pickle data from Matlab](./PythonPickle.m).
+
+
+### HDF5
 
 To avoid using Matlab Engine, which requires compatible versions of Python and Matlab,
 one can interchange data using a file and calling the other language interpreter.
