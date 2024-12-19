@@ -194,6 +194,9 @@ function [x_mat] = py2mat(x_py)
           x_mat.(string(k{1})) = py2mat(x_py.get(k{1}));
       end
 
+    case 'py.xarray.core.dataarray.DataArray'
+      x_mat = double(py.numpy.asfortranarray(x_py));
+
     % punt
     otherwise
       % return the original item?  nothing?
@@ -201,4 +204,25 @@ function [x_mat] = py2mat(x_py)
               string(class(x_py)));
       x_mat = [];
   end
+end
+
+
+function I = xarrayind2vector(V, key) %#ok<DEFNU>
+%% XARRAYIND2VECTOR convert xarray Index to Matlab vector array
+% by SciVision
+
+C = cell(V.indexes{key}.values.tolist);
+% might be numeric or cell array of strings
+
+if iscellstr(C) || (length(C) > 1 && isa(C{1}, 'py.str'))
+  I = cellfun(@char, C, 'uniformoutput', false);
+elseif isa(C{1}, 'py.datetime.datetime')
+  I = char(C{1}.isoformat());
+elseif isa(C{1}, 'py.int') && C{1} > 1e12
+  C = cellfun(@double,C)/1e9;
+  I = datetime(C, 'convertfrom','posixtime');
+else
+  I = cell2mat(C);
+end
+
 end

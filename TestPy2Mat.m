@@ -70,6 +70,23 @@ end
 
 end
 
+
+function test_xarray_dataarray(tc)
+
+t0 = datetime(2021, 12, 25, 1, 2, 34.56);
+A = pi;
+
+coords = dictionary("time", t0);
+
+% https://docs.xarray.dev/en/latest/generated/xarray.DataArray.html
+pyDataArray = py.xarray.DataArray(A, coords);
+
+B = py2mat(pyDataArray);
+
+tc.verifyEqual(B, A);
+
+end
+
 end
 
 end
