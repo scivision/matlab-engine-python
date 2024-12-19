@@ -197,12 +197,11 @@ function [x_mat] = py2mat(x_py)
     case 'py.xarray.core.dataarray.DataArray'
       x_mat = double(py.numpy.asfortranarray(x_py));
 
-    % punt
+    case "py.xarray.core.dataset.Dataset"
+      error("xarray.Dataset: please index the DataArray before py2mat")
+
     otherwise
-      % return the original item?  nothing?
-      fprintf('py2mat: type "%s" not recognized\n', ...
-              string(class(x_py)));
-      x_mat = [];
+      error(class(x_py) + " not handled")
   end
 end
 
