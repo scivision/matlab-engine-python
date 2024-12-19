@@ -7,6 +7,8 @@ function matlab2pickle(A, filename)
 
 pyA = py.numpy.array(A);
 
+filename = py.pathlib.Path(filename).expanduser();
+
 % create a python file handle to a binary file, overwriting existing file
 % dump the array to the pickle file
 py.pickle.dump(pyA, py.open(filename, "wb"));
