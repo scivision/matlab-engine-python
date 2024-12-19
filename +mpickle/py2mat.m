@@ -71,7 +71,7 @@ function [x_mat] = py2mat(x_py)
       fields = fieldnames(x_mat);
       for i = 1:length(fields)
         new_var = py2mat(x_mat.(fields{i}));
-        x_mat = setfield(x_mat,fields{i}, new_var);
+        x_mat = setfield(x_mat,fields{i}, new_var); %#ok<SFLD>
       end
 
     % NumPy arrays and typed scalars

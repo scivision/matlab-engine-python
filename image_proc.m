@@ -1,6 +1,8 @@
 %% example of doing image processing in Python with image from Matlab
 % assumes that you have previously installed scipy in Python.
 
+function f1 = image_proc()
+
 check_numpy()
 %% get test data from Matlab to Python efficiently
 % Matlab factory test data:
@@ -13,7 +15,8 @@ Y = py.scipy.ndimage.gaussian_filter(dat, 3);  % Scipy
 %% convert from Numpy array to Matlab array
 Y = uint8(Y);
 %% plot
-figure(1), clf(1)
+f1 = figure(1);
+clf(1)
 t = tiledlayout(1,3);
 
 nexttile(t)
@@ -36,4 +39,6 @@ catch e
   else
       rethrow(e)
   end
+end
+
 end
