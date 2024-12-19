@@ -6,6 +6,6 @@ filename = py.pathlib.Path(filename).expanduser();
 
 pyA = py.pickle.load(py.open(filename, "rb"));
 
-A = mpickle.py2mat(pyA);
+A = py2mat(pyA);
 
 end
