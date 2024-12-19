@@ -161,6 +161,9 @@ function [x_mat] = py2mat(x_py)
     case 'py.str'
       x_mat = string(x_py);
 
+    case 'py.pathlib.Path'
+      x_mat = string(py.str(x_py));
+
     % Python integers
     case 'py.int'
       x_mat = x_py.int64;
