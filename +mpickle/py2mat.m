@@ -34,12 +34,12 @@
 % }}}
 function [x_mat] = py2mat(x_py)
   switch class(x_py)
-      % MATLAB types
-      case {'logical', 'double', 'datetime'}
-        x_mat = x_py;
+    % MATLAB types
+    case {'logical', 'double', 'datetime'}
+      x_mat = x_py;
 
-      % Python dictionaries
-      case 'py.dict'
+    % Python dictionaries
+    case 'py.dict'
       try
         % the obvious dict -> struct conversion only works
         % if the key string can be a MATLAB variable
@@ -61,10 +61,7 @@ function [x_mat] = py2mat(x_py)
           if isvarname(v_name)
             x_mat.(v_name) = x_py.get(key_list{key_index});
           else
-            % this key can't be used; replace it
-            fixed = sprintf('K%06d_', key_index) + ...
-                    regexprep(v_name,'\W','_');
-            x_mat.(fixed) = x_py.get(key_list{key_index});
+            x_mat.(matlab.lang.makeValidName(v_name)) = x_py.get(key_list{key_index});
           end
         end
       end
