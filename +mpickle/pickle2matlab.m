@@ -1,11 +1,10 @@
-%% PICKLE2MATLAB load a Python pickle file to Matlab array
+function dat = pickle2matlab(filename)
+arguments
+  filename (1,1) string {mustBeFile}
+end
 
-function A = pickle2matlab(filename)
+pyA = mpickle.load_pickle(filename);
 
-filename = py.pathlib.Path(filename).expanduser();
-
-pyA = py.pickle.load(py.open(filename, "rb"));
-
-A = py2mat(pyA);
+dat = py2mat(pyA);
 
 end

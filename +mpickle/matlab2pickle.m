@@ -4,6 +4,10 @@
 %   that is a representable in Python.
 
 function matlab2pickle(A, filename)
+arguments
+  A
+  filename (1,1) string
+end
 
 pyA = py.numpy.array(A);
 

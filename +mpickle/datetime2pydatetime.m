@@ -1,6 +1,9 @@
 %% DATETIME2PYDATETIME convert Matlab datetime scalar to Python datetime.datetime
 
 function pdt = datetime2pydatetime(dt)
+arguments
+  dt (1,1) datetime
+end
 
 s = floor(second(dt));
 
