@@ -89,7 +89,7 @@ Example: [image_proc.m](./image_proc.m).
 
 ### Numpy import issues
 
-[check_numpy.m](./check_numpy.m)
+[check_numpy.m](https://github.com/scivision/matlab-interface-to-python/blob/main/check_numpy.m)
 shows how to check issues with DLLs on Windows with Numpy and Matlab.
 
 Python
