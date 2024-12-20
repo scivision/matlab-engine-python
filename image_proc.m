@@ -3,7 +3,6 @@
 
 function f1 = image_proc()
 
-check_numpy()
 %% get test data from Matlab to Python efficiently
 % Matlab factory test data:
 % https://www.mathworks.com/help/matlab/import_export/matlab-example-data-sets.html#mw_d7b7b839-5281-47b0-a838-6c6fe5ec32c2
