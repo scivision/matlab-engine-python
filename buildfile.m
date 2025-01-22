@@ -1,16 +1,13 @@
 function plan = buildfile
-plan = buildplan(localfunctions);
+
+plan = buildplan();
+
 plan.DefaultTasks = "test";
-end
 
-function checkTask(~)
-% Identify code issues (recursively all Matlab .m files)
-issues = codeIssues;
-assert(isempty(issues.Issues), formattedDisplayText(issues.Issues))
-end
+addpath(plan.RootFolder)
 
-function testTask(context)
-r = runtests(context.Plan.RootFolder, IncludeSubfolders=true, strict=true);
-assert(~isempty(r), "No tests were run")
-assertSuccess(r)
+
+plan("check") = matlab.buildtool.tasks.CodeIssuesTask(".", IncludeSubfolders=true);
+plan("test") = matlab.buildtool.tasks.TestTask("test", Strict=false);
+
 end
